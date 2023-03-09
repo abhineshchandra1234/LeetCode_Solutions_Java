@@ -1,5 +1,7 @@
 /**
  * 142. Linked List Cycle II
+ * 
+ * approach -
  * Use the linked list cycle logic to find the cycle
  * return null if there is no cycle
  * then run a loop till head!=slow
@@ -8,6 +10,9 @@
  * here slow & fast will meet at -4, slow is now at -4
  * then again head & slow will meet at 2 ie start of the cycle
  * slow & head are at equal distance from start of the cycle
+ * 
+ * Time - O(n)
+ * Space - O(1)
  */
 /**
  * Definition for singly-linked list.
