@@ -1,7 +1,7 @@
 /*
  * 382. Linked List Random Node
  * 
- * approach -
+ * approach2 -
  * we will solve this using reservoir sampling
  * we will first initialize head with given head.
  * in random function we are picking random no between 0 and i everytime count value increases.
