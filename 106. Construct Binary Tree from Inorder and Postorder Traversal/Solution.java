@@ -10,7 +10,7 @@
  * we will make the last no of postorder as root.
  * then we will find root.left and root.right by calling the helper function.
  * In the helper function we will pass the correct range of inorder and postorder using root index in inorder.
- * The trick here is to pass the correct range based on no of nodes
+ * The trick here is to pass the correct range based on no of nodes and find the root
  * 
  * Time - O(n)
  * Space - O(n)
