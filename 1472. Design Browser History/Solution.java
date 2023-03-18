@@ -11,8 +11,8 @@
  * visit-
  * we will create a temp node using the given url
  * then we link curr.next to temp and temp.prev to curr and move curr to its next.
- * Time - O(n)
- * Space - O(n)
+ * Time - O(1)
+ * Space - O(1)
  * 
  * back-
  * we will check prev is not equal to null and steps not equal to zero.
