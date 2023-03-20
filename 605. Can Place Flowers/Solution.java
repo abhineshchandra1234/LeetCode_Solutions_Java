@@ -5,7 +5,7 @@
  * we will solve this greedily by placing plants at every empty place from left to right
  * we will use two vars prev & next, to place flowers in the empty place.
  * prev value will be 0 for index 0 and the next value will be 0 for the last index.
- * loop will be broken when the count becomes equal to n or when we reached the end of array
+ * loop will be broken when the count becomes equal to n or when we reached the end of the array
  * 
  * Time - O(n)
  * Space - O(1)
