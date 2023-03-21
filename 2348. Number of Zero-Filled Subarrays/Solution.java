@@ -6,8 +6,8 @@
  * we will add the count in res
  * You will notice the count is increasing by 1 with each continuous 0. Again it will reset to 0 for non-zero num.
  * subarrays ending at 
- * 1st zero is 1 - 0xx
- * 2nd zero is 2 - x0x, 00x
+ * 1st zero is 1 - 0
+ * 2nd zero is 2 - x0, 00
  * 3rd zero is 3 - xx0, x00, 000
  * 4th zero is 4 - xxx0, xx00, x000, 0000
  * 
