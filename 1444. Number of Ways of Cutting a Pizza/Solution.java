@@ -1,4 +1,6 @@
 /**
+ * 1444. Number of Ways of Cutting a Pizza
+ * 
  * Intuition
  * We can solve this using the prefix sum and dp
  * We can cut horizontally through each row and vertically through each column
