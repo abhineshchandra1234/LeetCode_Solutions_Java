@@ -14,6 +14,8 @@
  * count
  * Then we will add char in the set, if it is a repeating char it will be added
  * in the new set.
+ * We return count + 1, for the remaining string, there will always be some
+ * remaining string
  * 
  * Complexity
  * Time complexity: O(n)
