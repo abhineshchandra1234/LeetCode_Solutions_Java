@@ -16,6 +16,8 @@
  * Time complexity: O(n)
  * Space complexity: O(n)
  */
+
+// StringBuilder Code
 class Solution {
     public String removeStars(String s) {
 
@@ -27,5 +29,27 @@ class Solution {
                 sb.append(c);
         }
         return sb.toString();
+    }
+}
+
+// Stack Code
+class Solution {
+    public String removeStars(String s) {
+
+        Stack<Character> st = new Stack();
+        for (char c : s.toCharArray()) {
+            if (c == '*')
+                st.pop();
+            else
+                st.push(c);
+        }
+        if (st.isEmpty())
+            return "";
+
+        StringBuilder sb = new StringBuilder();
+        while (!st.isEmpty()) {
+            sb.append(st.pop());
+        }
+        return sb.reverse().toString();
     }
 }
