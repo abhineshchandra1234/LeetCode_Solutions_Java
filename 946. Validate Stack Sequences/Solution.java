@@ -35,3 +35,29 @@ class Solution {
         return s.isEmpty();
     }
 }
+
+/**
+ * 2nd Approach
+ * Using pushed as stack
+ * 
+ * Complexity
+ * Time complexity: O(n)
+ * Space complexity: O(1)
+ */
+class Solution {
+    public boolean validateStackSequences(int[] pushed, int[] popped) {
+
+        Stack<Integer> s = new Stack();
+        int i = 0, j = 0;
+
+        for (int no : pushed) {
+            pushed[i] = no;
+            while (i >= 0 && pushed[i] == popped[j]) {
+                i--;
+                j++;
+            }
+            i++;
+        }
+        return i == 0;
+    }
+}
