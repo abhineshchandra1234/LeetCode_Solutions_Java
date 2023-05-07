@@ -28,6 +28,7 @@
  * For simplicity I have done binary serach at every index to update lis.
  * You can compare new no with top of lis, if doesnt satisfy the cond then you
  * can do binary search
+ * we are updating right as the lis size increases to avoid unnecessary search
  * 
  * Complexity
  * Time complexity:
