@@ -6,10 +6,7 @@
  * leave.
  * For each index we have two options
  * we can collect points of curr index and skip next
- * brainpoweribrainpower_ibrainpower
- * i
- * ​
- * indexes
+ * brainpoweri indexes
  * we can skip curr index and select next index
  * we will assign max of above two values to each index
  * each dp[i] will represent max points from i to n
