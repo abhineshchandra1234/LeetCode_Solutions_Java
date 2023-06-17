@@ -1,4 +1,6 @@
 /**
+ * 1187. Make Array Strictly Increasing
+ * 
  * Intuition
  * 
  * This question is created by a girl based on partner choices :P.
