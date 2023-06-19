@@ -1,3 +1,18 @@
+/**
+ * 1732. Find the Highest Altitude
+ * 
+ * Intuition
+ * 
+ * We will use prefix_sum to calculate curr_alt, and using curr_alt we will
+ * update max_alt.
+ * 
+ * Complexity
+ * 
+ * Time complexity: O(n)
+ * 
+ * Space complexity: O(1)
+ * 
+ */
 class Solution {
     public int largestAltitude(int[] gain) {
 
