@@ -51,3 +51,48 @@ class Solution {
         return ans;
     }
 }
+
+/**
+ * Approach
+ * 
+ * Sliding Window
+ * We will have a window of size 2 * k + 1
+ * When we come across eligible index we will update the index.
+ * We will keep discarding nos not part of the window.
+ * 
+ * Complexity
+ * 
+ * Time complexity: O(n)
+ * 
+ * Space complexity: O(1)
+ * 
+ */
+class Solution {
+    public int[] getAverages(int[] nums, int k) {
+
+        int n = nums.length;
+        int windowSize = 2 * k + 1;
+        long windowSum = 0;
+        int[] ans = new int[n];
+        Arrays.fill(ans, -1);
+
+        if (n < windowSize) {
+            return ans;
+        }
+
+        for (int i = 0; i < n; i++) {
+
+            windowSum += nums[i];
+
+            // removing last element from the window
+            if (i - windowSize >= 0)
+                windowSum -= nums[i - windowSize];
+
+            // doing calculation for valid index
+            if (i >= windowSize - 1)
+                ans[i - k] = (int) (windowSum / windowSize);
+        }
+
+        return ans;
+    }
+}
