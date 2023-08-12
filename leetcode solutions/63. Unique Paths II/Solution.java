@@ -6,15 +6,15 @@
  * Everyone knows sky is blue but very few know why
  * 
  * Recursive Approach
- * we can solve this problem using dfs or bottom-up approach using recursion and
- * memoization
+ * we can solve this problem using dfs and bottom-up approach using recursion
+ * and memoization
  * we call the approach bottom-up because we get the solution first at the
  * bottom, and solution is computated upwards from there
  * we can reach any cell from either top or left cell.
  * So total path for curr cell = paths for (top + left)
  * It is a valid path if we reach the last cell recursively.
  * Iterative Approach
- * We will solve using bfs or top-down approach
+ * We will solve using bfs and top-down approach
  * We call the approach top-down as we get the solution first at the top, and
  * solution is computated downwards as we move from top to bottom.
  * try to solve this problem using dry run from top cell to understand it
@@ -45,6 +45,7 @@
  * Space complexity:
  * 
  * O(n)
+ * 
  * 
  */
 class Solution {
