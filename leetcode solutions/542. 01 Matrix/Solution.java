@@ -17,6 +17,12 @@
  * bottom to top and right to left.
  * TC - O(m*n) SC - O(1)
  * 
+ * Approach
+ * 
+ * max distance between two nodes will be m+n
+ * int top = INF, left = INF; we cannot compare min on null
+ * 
+ * 
  * Complexity
  * 
  * Time complexity: O(m*n)
