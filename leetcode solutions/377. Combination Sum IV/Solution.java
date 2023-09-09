@@ -19,6 +19,9 @@
  * we can add 3 to 5 combinations to reach 4
  * so the combinations count remain same as we need just 1 more no
  * 
+ * Note - if neg nos were allowed then -1 & 1 sum to 0 and can have infinite
+ * combinations. we can fix this by limiting the occurances of neg nos.
+ * 
  * radhe radhe
  * 
  * Approach
