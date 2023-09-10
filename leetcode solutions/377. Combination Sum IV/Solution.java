@@ -5,7 +5,7 @@
  * 
  * credits FreeTymeKiyan
  * we will solve this problem using dp
- * comb[target] = sum(comb[target - nums[i]]), where 1 <= i < nums.length, and
+ * comb[target] = sum(comb[target - nums[i]]), where 0 <= i < nums.length, and
  * target >= nums[i]
  * any element can contribute to target if it is less than or equal to target.
  * So target will be sum of all these approaches.
