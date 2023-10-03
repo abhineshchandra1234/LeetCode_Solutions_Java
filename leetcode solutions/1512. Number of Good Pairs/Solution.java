@@ -10,6 +10,12 @@
  * For each no n, count[n] pairs will be added to the res
  * Another formula is n*(n-1)/2
  * 
+ * Input: nums = [1,1,1,1]
+ * Output: 6
+ * 3, 2, 1, 0
+ * sum of n terms = n/2[2a + (n – 1)d]
+ * a = 0, d = 1 -> n*(n-1)/2
+ * 
  * Approach
  * 
  * Input: nums = [1,1,1,1]
