@@ -4,14 +4,11 @@
  * Intuition
  * 
  * we will solve this problem using recursion and memoization to avoid repeated
- * computation
+ * computation ie top-down approach
  * For every combination of nums1 & nums2 we three choices
  * first -> pick both and move to next indices
  * second -> pick nums1 and skip nums2
  * third -> skip nums1 and pick nums2
- * It is top-down approach as recursion is moving from top to bottom and result
- * is first calculated at bottom which is traversed to the top.
- * Then top is returned as the result.
  * 
  * Approach
  * 
@@ -28,6 +25,7 @@
  * Space complexity:
  * 
  * O(m*n), dp space
+ * 
  * 
  */
 class Solution {
