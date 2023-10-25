@@ -23,6 +23,7 @@
  * if the node is even and parent is 0 then right value of 0 is returned ie 1
  * if the node is even and parent is 1 then right value of 1 is returned ie 0
  * similar case will be for odd node
+ * Its base case is when n=1, res is 0, since the table is 1-indexed.
  * 
  * Complexity
  * 
