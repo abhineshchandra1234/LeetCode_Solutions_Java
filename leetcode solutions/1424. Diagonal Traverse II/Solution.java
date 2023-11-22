@@ -7,7 +7,8 @@
  * As it is evident from question we need to traverse from bottom(row=n..0,
  * col=0..n) for each diagonal and add it to res
  * But how do we group elements to different or same diagonal group
- * Same diagonal group elements will have equal sum of indices ie i+j
+ * Same diagonal group elements will have equal sum of indices ie i+j, but
+ * different than other diagonal group indices sum by min 1
  * 
  * like for 2 diagonal->
  * (2,0)==2+0==2
