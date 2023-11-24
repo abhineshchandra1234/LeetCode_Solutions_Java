@@ -6,7 +6,8 @@
  * credits lee215
  * we need to pick any three piles give max to alice, min to bob and keep middle
  * to ourself.
- * To maximize our share we need to sort the array
+ * To maximize our share we need to sort the array, since we can pick any 3
+ * piles at a time.
  * then give piles from lowest 1/3 part to bob, from rest 2/3 part we can assign
  * greatest to alice and keep min for ourself alternatively.
  * SSSMLMLML
