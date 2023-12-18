@@ -4,7 +4,7 @@
  * Intuition
  * 
  * we need to maximize product difference for this we need to find diff between
- * max and min product pair
+ * max and min product pair ie (firstMax*secondMax) - (firstMin*secondMin)
  * max and min product pair will consist of 2 max & 2 min nos respectively.
  * 2 max can be found out by comparing no with first max and updating first max
  * and second max, then comparing with second max and updating second max
