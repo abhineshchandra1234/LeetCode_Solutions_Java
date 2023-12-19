@@ -6,7 +6,7 @@
  * the desc and ex is very confusing, we can understand through individual cells
  * we need to apply smoothen block to each cell and find avg of the block and
  * assign it to the cell. Thats it.
- * For each cell we will discard neighs outside smoothen block
+ * For each cell we will discard neighs outside the matrix
  * smoothen block will be from i-1 to i+1 for rows and j-1 to j+1 for cols for
  * each cell and it will contain curr cell too.
  * 
@@ -49,7 +49,7 @@ class Solution {
                 int nx = x + i;
                 int ny = y + j;
 
-                // discard neighs for a cell outside smoothen block
+                // discard neighs for a cell outside matrix
                 if (nx < 0 || nx >= n || ny < 0 || ny >= m)
                     continue;
 
