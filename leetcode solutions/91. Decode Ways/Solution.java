@@ -19,11 +19,11 @@
  * Input: s = "226"
  * Output: 3
  * dp[1] = '2' = 1
- * //if we seperate 2 ways to decode rest ie '2'
- * //if we seperate 22 ways to decode rest ie ''
+ * //if we separate 2 ways to decode rest ie '2'
+ * //if we separate 22 ways to decode rest ie ''
  * dp[2] = '2' '2' = 1, '22' = 1, 1 + 1 = 2
- * //if we seperate 6 ways to decode rest ie 22
- * //if we seperate 26 ways to decode rest ie 2
+ * //if we separate 6 ways to decode rest ie 22
+ * //if we separate 26 ways to decode rest ie 2
  * dp[3] = '22' '6' = 2, '2' '26' = 1, 2 + 1 = 3
  * 
  * Complexity
