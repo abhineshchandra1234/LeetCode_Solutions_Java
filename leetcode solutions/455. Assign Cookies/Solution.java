@@ -3,7 +3,10 @@
  * 
  * Intuition
  * 
+ * credits fabrizio3
  * we will solve this problem using greedy approach
+ * to maximize the no of content childs start assigning cookies to child with
+ * min greed
  * we will first sort both the arrays then use two ptrs to traverse them
  * if the cookie is big enough for child content then we will move to next child
  * else not
@@ -15,6 +18,7 @@
  * Time complexity: O(nlogn), sorting
  * 
  * Space complexity: O(logn), sorting
+ * 
  * 
  */
 class Solution {
