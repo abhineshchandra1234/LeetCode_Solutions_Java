@@ -4,6 +4,7 @@
  * Intuition
  * 
  * credits lee215
+ * We will solve this problem through DFS
  * Maximum difference will be the difference between root and leaf nodes
  * So we will pass max and min to children and at leaf node we will return diff
  * between max & min through the path from root to leaf.
