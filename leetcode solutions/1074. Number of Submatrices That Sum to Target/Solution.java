@@ -7,7 +7,7 @@
  * we will store prefix sum for each cell, so prefix sum for whole row will be
  * at the last cell
  * when we take sum of prefix sum of each row, we get prefix sum for whole
- * matrix ending at (n,n) starting at (0,0)
+ * matrix in bottom right at (n,n) for matrix ending at (n,n) starting at (0,0)
  * As evident in the question we will run two loops for cols and 1 loop for row
  * to cover every submatrices
  * 
