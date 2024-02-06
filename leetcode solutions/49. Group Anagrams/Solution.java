@@ -34,3 +34,37 @@ class Solution {
         return new ArrayList(map.values());
     }
 }
+
+/**
+ * Code
+ * 
+ * Time complexity: O(m∗n)
+ * 
+ */
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+
+        if (strs.length == 0) {
+            return new ArrayList();
+        }
+        HashMap<String, List<String>> map = new HashMap();
+        for (String s : strs) {
+            char[] ch = s.toCharArray();
+            int[] count = new int[26];
+            for (char c : ch) {
+                count[c - 'a']++;
+            }
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < 26; i++) {
+                sb.append("#");
+                sb.append(count[i]);
+            }
+            if (!map.containsKey(sb.toString())) {
+                map.put(sb.toString(), new ArrayList());
+            }
+            map.get(sb.toString()).add(s);
+        }
+
+        return new ArrayList(map.values());
+    }
+}
