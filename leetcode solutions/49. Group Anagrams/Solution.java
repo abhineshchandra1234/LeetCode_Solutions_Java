@@ -28,8 +28,7 @@ class Solution {
             Arrays.sort(chars);
             String sortedWord = new String(chars);
 
-            map.putIfAbsent(sortedWord, new ArrayList());
-            map.get(sortedWord).add(word);
+            map.computeIfAbsent(sortedWord, k -> new ArrayList()).add(word);
         }
         return new ArrayList(map.values());
     }
