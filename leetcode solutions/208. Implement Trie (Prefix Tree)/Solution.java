@@ -1,76 +1,108 @@
 /**
  * 208. Implement Trie (Prefix Tree)
  * 
- * approach-
- * We will solve this by creating a TrieNode object.
- * TrieNode object will contain a self-refrencing array of size 26
- * and a boolean isWord to mark the end of the word.
+ * Intuition
  * 
- * insert-
- * we will prase through each char of word, and find its index
- * if there is no TrieNode at that particular index we will create one and move TrieNode to its children
- * At last we will mark isWord as true, we use it as we can have words like bed, bedrock
- * Time - O(n)
- * Space - O(n)
+ * we will solve this problem by creating a class Node which has attribute like
+ * self referencing array of size 26 and isEnd boolean variable to mark the end
+ * of the word
+ * It will contain methods like insert, search and startsWith
+ * It will store strings in these node
+ * insert
+ * For every char a new node will be created, when we reach end of string, isEnd
+ * will be marked as true to signify end of word
+ * search
+ * For every char we will see if a node exist else return false
+ * If we reach end of string and node exist and isEnd is true, we found our word
+ * startsWith
+ * For every char we will see if a node exist else return false
+ * If we reach end of string and node exist return true
+ * we are using recursion to do insert, search and startsWith operations
  * 
- * search -
- * we will parse through the char and find index
- * If index is null return false else move TrieNode to its children.
- * At last return true if isWord is true, we can have word like apple, and searching app.
- * Time - O(n)
+ * Approach
  * 
- * startsWith - 
- * has same logic has search.
- * At last we will return true, bcs we havent reached end of the word bcs we are searching prefix.
- * we can use same words example as above
- * Time - O(n)
+ * we are using idx to do operations
+ * we are checking for its validity to avoid null ptr exception thrown by string
+ * 
+ * Complexity
+ * 
+ * Time complexity:
+ * insert - O(n)
+ * search - O(n)
+ * startsWith - O(n)
+ * 
+ * Space complexity:
+ * insert - O(n)
+ * search - O(1)
+ * startsWith - O(1)
+ * 
  */
 class Trie {
-    TrieNode root;
-    class TrieNode {
-        TrieNode[] children = new TrieNode[26];
-        boolean isWord = false;
-    }
+    Node root;
+
     public Trie() {
-        root = new TrieNode();
+        root = new Node();
     }
-    
+
     public void insert(String word) {
-        TrieNode it = root;
-        for(char c : word.toCharArray()) {
-            int i = c - 'a';
-            if(it.children[i]==null) {
-                it.children[i] = new TrieNode();
-            }
-            it  = it.children[i];
-        }
-        it.isWord = true;
+        root.insert(word, 0);
     }
-    
+
     public boolean search(String word) {
-        TrieNode it = root;
-        for(char c: word.toCharArray()) {
-            int i = c - 'a';
-            if(it.children[i]!=null) {
-                it = it.children[i];
-            }
-            else
-                return false;
-        }
-        return it.isWord;
+        return root.search(word, 0);
     }
-    
+
     public boolean startsWith(String prefix) {
-        TrieNode it = root;
-        for(char c: prefix.toCharArray()) {
-            int i = c - 'a';
-            if(it.children[i]!=null) {
-                it = it.children[i];
-            }
-            else
-                return false;
+        return root.startsWith(prefix, 0);
+    }
+
+    class Node {
+        Node[] nodes;
+        boolean isEnd;
+
+        Node() {
+            nodes = new Node[26];
         }
-        return true;
+
+        private void insert(String word, int idx) {
+            int n = word.length();
+            // to avoid null ptr exception for string
+            // no more chars to insert
+            if (idx >= n)
+                return;
+            int i = word.charAt(idx) - 'a';
+            if (nodes[i] == null)
+                nodes[i] = new Node();
+            if (idx == n - 1)
+                nodes[i].isEnd = true;
+            nodes[i].insert(word, idx + 1);
+        }
+
+        private boolean search(String word, int idx) {
+            int n = word.length();
+            // all chars searched
+            if (idx >= n)
+                return false;
+            Node node = nodes[word.charAt(idx) - 'a'];
+            if (node == null)
+                return false;
+            if (idx == n - 1 && node.isEnd)
+                return true;
+            return node.search(word, idx + 1);
+        }
+
+        private boolean startsWith(String prefix, int idx) {
+            int n = prefix.length();
+            // all chars searched
+            if (idx >= n)
+                return false;
+            Node node = nodes[prefix.charAt(idx) - 'a'];
+            if (node == null)
+                return false;
+            if (idx == n - 1)
+                return true;
+            return node.startsWith(prefix, idx + 1);
+        }
     }
 }
 
