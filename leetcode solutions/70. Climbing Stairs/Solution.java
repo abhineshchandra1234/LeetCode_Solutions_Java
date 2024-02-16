@@ -26,19 +26,14 @@ class Solution {
 
         if (n == 1)
             return 1;
-        if (n == 2)
-            return 2;
-
-        int one_step_before = 2;
-        int two_steps_before = 1;
-        int all_ways = 0;
-
-        for (int i = 3; i <= n; i++) {
-            all_ways = one_step_before + two_steps_before;
-            two_steps_before = one_step_before;
-            one_step_before = all_ways;
+        int one_step = 1;
+        int two_step = 1;
+        int res = 0;
+        for (int i = 2; i <= n; i++) {
+            res = one_step + two_step;
+            one_step = two_step;
+            two_step = res;
         }
-
-        return all_ways;
+        return res;
     }
 }
