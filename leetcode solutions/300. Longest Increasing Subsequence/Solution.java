@@ -5,10 +5,22 @@
  * 
  * we will solve this problem using dfs
  * it is like 0/1 knapsack problem we can either pick curr element or skip it
- * for LIS that way time complexity will be 2^n
+ * for LIS that way time complexity will be 2n2^n2n
  * we can reduce it further using dfs
  * every index can be a start of LIS
  * we can create a dfs tree for each index to understand better
+ * 2nd version
+ * We can treat every no as end of lis
+ * start can be any no from 0 to i-1
+ * we will update curr value if by including curr no to prev lis is greater than
+ * curr lis
+ * dp[i] = dp[j] + 1;
+ * Then we will update max with curr lis after its computation is finished, then
+ * move to other index and repeat same
+ * At last max will have max lis of all indices
+ * by default lis for every index will be 1, ie curr char only
+ * Version 2 template you can follow for all subsequence problems
+ * 
  * 
  * Approach
  * 
@@ -52,5 +64,27 @@ class Solution {
         }
 
         return maxLIS;
+    }
+}
+
+// version 2
+class Solution {
+    public int lengthOfLIS(int[] nums) {
+
+        int n = nums.length;
+        int[] dp = new int[n];
+        Arrays.fill(dp, 1);
+
+        int lis = 1;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (nums[i] > nums[j] && dp[i] < dp[j] + 1) {
+                    dp[i] = dp[j] + 1;
+                    lis = Math.max(lis, dp[i]);
+                }
+            }
+        }
+
+        return lis;
     }
 }
