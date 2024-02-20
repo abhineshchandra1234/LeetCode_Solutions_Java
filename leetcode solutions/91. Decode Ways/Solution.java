@@ -9,6 +9,8 @@
  * dp[1] means ways to decode string of size 1
  * then we will take one or two combinations along the way and store it in res
  * dp[n] will contain the end res.
+ * dp[i] += dp[i-1], for single digit
+ * dp[i] += dp[i-2], for double digit
  * 
  * Approach
  * 
