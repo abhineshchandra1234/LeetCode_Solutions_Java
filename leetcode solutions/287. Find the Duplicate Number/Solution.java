@@ -8,6 +8,9 @@
  * for every value we will make its corresponding index value -ve.
  * So duplicate value will try to make the same index value -ve twice and we
  * will return that index or duplicate value.
+ * second approach
+ * Notice duplicate no forms a loop, we will simply use floyd cycle finding
+ * algorithm to find it
  * 
  * Approach
  * 
@@ -32,5 +35,26 @@ class Solution {
             nums[idx] = -nums[idx];
         }
         return -1;
+    }
+}
+
+// second approach
+class Solution {
+    public int findDuplicate(int[] nums) {
+
+        int slow = 0, fast = 0;
+        // first collision
+        do {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        } while (slow != fast);
+
+        slow = 0;
+        // second collision
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        return slow;
     }
 }
