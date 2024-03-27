@@ -1,4 +1,5 @@
-/*
+/***
+ * 
  * 713. Subarray Product Less Than K
  * 
  * Intuition
@@ -10,6 +11,12 @@
  * + 1 and will be added to res
  * 
  * Approach
+ * Input: nums = [10,5,2,6], k = 100
+ * Output: 8
+ * 10
+ * 5, [10, 5]
+ * 2, [5, 2]
+ * 6, [2,6], [5, 2, 6]
  * Complexity
  * 
  * Time complexity: O(n)
