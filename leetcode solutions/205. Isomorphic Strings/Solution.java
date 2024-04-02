@@ -10,6 +10,9 @@
  * Approach
  * 
  * ascii size is 256, and we can use array of same size to minimize computation
+ * here we are directly using char as index to update mapping or array, as array
+ * will convert char to its ascii value which is safe to use as array has
+ * placeholder for all ascii chars
  * 
  * Input: s = "egg", t = "add"
  * Output: true
