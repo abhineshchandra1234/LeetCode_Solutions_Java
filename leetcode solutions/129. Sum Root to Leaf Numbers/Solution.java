@@ -1,49 +1,53 @@
 /**
  * 129. Sum Root to Leaf Numbers
  * 
- * approach - 
- * we will solve using preorder traversal using recursion, bcs we need sum to include root.
- * we will calculate sum at every node, by multiplying prev sum by 10 and adding curr value
- * if the curr node is child node we will add the sum to total
- * then we will pass the sum to childs of the root.
- * Finally return total.
+ * Intuition
  * 
- * Time - O(n)
- * Space - O(1)
+ * we will solve this problem through dfs
+ * As evident in the question, we will calculate curr sum at each node and pass
+ * that sum to child nodes
+ * we will return total of sums returned by left and right child nodes
+ * curr sum = prev sum * 10 + node.val, prev sum will be 0 for root node
+ * 
+ * Approach
+ * 
+ * Terminating cond 1 - If root or curr node is null return sum as 0
+ * Terminating cond 2 - If curr node has no child return the curr sum
+ * 
+ * Complexity
+ * 
+ * Time complexity: O(n)
+ * 
+ * Space complexity: O(h), recursive stack
+ * 
  */
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
+ * int val;
+ * TreeNode left;
+ * TreeNode right;
+ * TreeNode() {}
+ * TreeNode(int val) { this.val = val; }
+ * TreeNode(int val, TreeNode left, TreeNode right) {
+ * this.val = val;
+ * this.left = left;
+ * this.right = right;
+ * }
  * }
  */
 class Solution {
-    int total = 0;
     public int sumNumbers(TreeNode root) {
-        
-        helper(root,0);
-        return total;
+
+        return dfs(root, 0);
     }
 
-    public void helper(TreeNode root,int sum) {
-
-        if(root==null)
-            return;
-        sum = sum*10 + root.val;
-        if(root.left==null && root.right==null) {
-            total += sum;
-            return;
-        }
-        helper(root.left,sum);
-        helper(root.right,sum);
+    private int dfs(TreeNode root, int pSum) {
+        if (root == null)
+            return 0;
+        int sum = pSum * 10 + root.val;
+        if (root.left == null && root.right == null)
+            return sum;
+        return dfs(root.left, sum) + dfs(root.right, sum);
     }
 }
