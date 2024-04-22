@@ -9,7 +9,7 @@
  * when we inc or dec a single char a new state(differ by 1) is formed which can
  * be only reached by prev state, similarly we can create other states from new
  * state
- * So these states forms a graph which can be traversed using BFS
+ * So these connected states forms a graph which can be traversed using BFS
  * So we are using BFS to travel from start state ie 0000 to end state ie target
  * 
  * Approach
