@@ -3,7 +3,7 @@
  * 
  * Intuition
  * 
- * This problem is very tricky to understand
+ * This problem is very tricky to understand, especially its time complexity.
  * we will solve this problem through dynamic programming
  * we will have two ptrs one ptr for 12 index and second ptr for key
  * we will traverse ring and if any char matches char at pt2, we will update
@@ -16,11 +16,14 @@
  * Approach
  * Complexity
  * 
- * Time complexity: O(K* R^2), for every char in the ring k
- * recursive call are made, one for each letter in the keyword. So if there are
- * duplicate chars in ring R^2 * k
+ * 
+ * Time complexity: O(K* R^2), Here we are traversing ring chars,
+ * but we are not discarding any chars in further computation. we are agian
+ * traversing whole ring in circular form to find the min steps.
+ * Or you can also see n loop for dp[n][m]
  * 
  * Space complexity: O(K*R^2), recursive stack
+ * 
  * 
  */
 class Solution {
