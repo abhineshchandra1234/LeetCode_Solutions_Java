@@ -23,7 +23,7 @@
  * -> 1 + (3 + 4)
  * -> 1 + 7
  * -> 8
- * ans(0) -> [7] -> 1, 1, 2, 2, 2
+ * ans(0) -> [8] -> 1, 1, 2, 2, 2
  * 
  * In second DFS2 we will use root ans to find ans for all the nodes
  * res[i] = res[root] - count[i] + n - count[i];
@@ -36,6 +36,7 @@
  * - count(2) -> res[0] already has 1 dist for each 2 connected nodes, 2 as a
  * root also has 1 dist for each connected node
  * so we will remove duplicate 1 dist for res[0] for 2 childs
+ * res[2] = {8 + 6 - 4} - 4 -> 10 - 4 -> 6 -> 1, 2, 1, 1, 1
  * 
  * Note: The secret lies in the equations, if you understood it, you have
  * understood the problem
