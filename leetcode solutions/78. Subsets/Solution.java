@@ -16,7 +16,7 @@
  * index.
  * 
  * Note - This similar concept of backtracking can be applied to subsets,
- * permutations, combination sums etc.
+ * permutations, combination sums, Palindrome Partitioning etc.
  * 
  * Approach
  * Complexity
