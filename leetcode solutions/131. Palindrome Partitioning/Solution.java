@@ -29,9 +29,9 @@
  * 
  * Complexity
  * 
- * Time complexity: O(n*2^n), for n chars we are generating 2^n subsets each
+ * Time complexity: O(2^n), we are generating 2^n subsets
  * 
- * Space complexity: O(2^n), recursive stack length is equal to 2^n for each
+ * Space complexity: O(n), recursive stack length is equal to n for each
  * index
  * 
  */

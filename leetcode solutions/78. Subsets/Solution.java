@@ -21,7 +21,7 @@
  * Approach
  * Complexity
  * 
- * Time complexity: O(n*2^n), we are generating 2^n subsets and copying subsets
+ * Time complexity: O(2^n), we are generating 2^n subsets and copying subsets
  * of avg length n into res
  * 
  * Space complexity: O(n), recursive stack length is equal to n indices
