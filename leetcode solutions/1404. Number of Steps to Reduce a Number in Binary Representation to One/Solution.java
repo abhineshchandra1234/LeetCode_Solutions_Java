@@ -14,6 +14,12 @@
  * no by 2.
  * 
  * Approach
+ * 
+ * we are using carry to convert odd nos to even
+ * If the carry is left at the end will result in a new bit, whose next digit is
+ * 0 ie even, which require 1 step
+ * 
+ * 
  * Complexity
  * 
  * Time complexity: O(n)
