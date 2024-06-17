@@ -1,8 +1,0 @@
-{
-  "java.project.sourcePaths": [
-    "miscellaneous",
-    "leetcode solutions/101. Symmetric Tree",
-    "leetcode solutions/387. First Unique Character in a String"
-  ],
-  "java.debug.settings.onBuildFailureProceed": true
-}
