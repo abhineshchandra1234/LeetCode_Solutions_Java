@@ -7,3 +7,8 @@
 ```kotlin
 val cars = arrayOf("first", "second", "third", "fourth")
 ```
+### Access elements of array
+- to access any element we can use index no inside square brackets
+```kotlin
+println(cars[0])
+```
