@@ -1,5 +1,7 @@
 # kotlin data structures
 
+<details>
+<summary>Array</summary>
 
 ## Array
 - It is used to store multiple values in a single variable.
@@ -11,4 +13,7 @@ val cars = arrayOf("first", "second", "third", "fourth")
 - to access any element we can use index no inside square brackets
 ```kotlin
 println(cars[0])
+//Outputs first
 ```
+
+</details>
