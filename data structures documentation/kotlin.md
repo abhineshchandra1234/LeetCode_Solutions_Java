@@ -15,5 +15,18 @@ val cars = arrayOf("first", "second", "third", "fourth")
 println(cars[0])
 //Outputs first
 ```
+### change array element
+- use index to change array element
+```kotlin
+cars[0] = "ninth"
+println(cars[0])
+//outputs ninth
+```
+### Array length
+- to count no of elements of array use `size` property
+```kotlin
+println(cars.size)
+//Outputs 4
+```
 
 </details>
