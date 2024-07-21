@@ -1,4 +1,5 @@
 # Important Algorithms
+> Girte hain shahsawar hi maidan-e-jung mein. Woh tifl kya gire jo ghutno ke bal chale – only the horseman falls on the battlefield; how will that child fall who crawls on his knees. source - net
 
 
 ## Kahn's algorithm (Topological Sorting)
