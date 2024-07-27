@@ -1,6 +1,9 @@
 # Important Algorithms
 > Girte hain shahsawar hi maidan-e-jung mein. Woh tifl kya gire jo ghutno ke bal chale – only the horseman falls on the battlefield; how will that child fall who crawls on his knees. source - net
 
+## Top algorithms
+- List of top algorithms, data structures and concepts
+- [Top Algorithms/Data Structures/Concepts every computer science student should know](https://medium.com/techie-delight/top-algorithms-data-structures-concepts-every-computer-science-student-should-know-e0549c67b4ac)
 
 ## Kahn's algorithm (Topological Sorting)
 - It is used to order vertices in a directed graph
