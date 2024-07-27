@@ -13,3 +13,9 @@
 
 ### References
 - [Kahn’s algorithm for Topological Sorting](https://www.geeksforgeeks.org/topological-sorting-indegree-based-solution/)
+
+## Dijkstra’s Algorithm (Shortest Path Algorithm)
+- It is used to solve single-source shortest path problems having non-negative edge weights in the graph
+  
+### References
+- [What is Dijkstra’s Algorithm?](https://www.geeksforgeeks.org/introduction-to-dijkstras-shortest-path-algorithm/)
