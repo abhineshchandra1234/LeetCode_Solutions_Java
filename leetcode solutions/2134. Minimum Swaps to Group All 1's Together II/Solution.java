@@ -15,8 +15,7 @@
  * 
  * Approach
  * 
- * Note: we are updating end first, to represent curr window correctly,
- * otherwise it will point outside the window always
+ * 
  * 
  * Complexity
  * 
