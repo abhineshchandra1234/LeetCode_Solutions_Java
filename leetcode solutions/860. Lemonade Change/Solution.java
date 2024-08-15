@@ -13,6 +13,7 @@
  * if the bill is 10, one 5 is required
  * if bill is 20, either one 10 and one 5 or three 5s are required
  * remember to add or deduct bills based on amount received and changes provided
+ * for each bill type
  * 
  * Complexity
  * Time complexity: O(n)
