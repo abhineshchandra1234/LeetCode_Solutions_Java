@@ -2,104 +2,101 @@
  * 1579. Remove Max Number of Edges to Keep Graph Fully Traversable
  * 
  * Intuition
- * Let first understand the question.
- * It is given alice and bob should be able to traverse all nodes either through
- * common path or their own path
- * Note - they cannot use each other path for traversal
- * We will solve this using DSU. We will create two groups one for each alice
- * and bob.
- * If alice group and bob group contain all n nodes means both are able to
- * traverse all the nodes. Then we can proceed to remove any extra path if any.
- * If either of the group doesnt contain n nodes means one of them cannot
- * traverse all nodes and we will return -1.
- * to create group we can traverse all edges and do union find operation.
- * we need to priortize common path, so that we can find extra path
- * extra path = edges.length - unique paths
+ * 
+ * we are given n nodes of an undirected graph
+ * we are also given edges array where edgei = [typei, ui, vi]
+ * which represent there is a bidirectional edge of a particular type between u
+ * & v
+ * first type of edge can be traversed only by alice
+ * second type of edge can be traversed only by bob
+ * third type edge can be traversed by both
+ * we need to return count of max no of edges we can remove, so that whole graph
+ * is still traversable by both alice and bob
+ * If above is not possible return -1
  * 
  * Approach
- * to avoid sorting, and reduce complexity to O(n) traverse edges for type 3
- * seperately.
+ * 
+ * we will create two groups for alice and bob using union-find operation
+ * if both have single parent ie graph is traversable, return ans = total edges
+ * - unique paths else -1
+ * for unique paths we need to do union of nodes of path 3 first in both the
+ * groups, so that we can maximize the extra edge removal
  * we have used "|" operator bcs we need to compute right hand side too apart
- * from the result.
+ * from the result. otherwise it will return after first true condition.
  * 
  * Complexity
- * Time complexity:
- * O(nlogn) for sorting
  * 
- * Space complexity:
+ * Time complexity: O(n), create union of two groups
  * 
- * O(n) for DSU
+ * Space complexity: O(n), store union
+ * 
  */
+
 class Solution {
+
     public int maxNumEdgesToRemove(int n, int[][] edges) {
 
-        Arrays.sort(edges, (a, b) -> b[0] - a[0]);
-        DSU dsu_alice = new DSU(n);
-        DSU dsu_bob = new DSU(n);
-        int edgeAdd = 0;
+        DSU alice = new DSU(n);
+        DSU bob = new DSU(n);
+
+        int unique = 0;
+        for (int[] edge : edges)
+            if (edge[0] == 3 && (alice.union(edge[1], edge[2]) | bob.union(edge[1], edge[2])))
+                unique++;
 
         for (int[] edge : edges) {
-            int type = edge[0];
-            int a = edge[1];
-            int b = edge[2];
-
-            switch (type) {
-                case 3:
-                    if (dsu_alice.union(a, b) | dsu_bob.union(a, b))
-                        edgeAdd++;
-                    break;
-                case 2:
-                    if (dsu_bob.union(a, b))
-                        edgeAdd++;
-                    break;
-                case 1:
-                    if (dsu_alice.union(a, b))
-                        edgeAdd++;
-                    break;
-            }
+            if (edge[0] == 1 && alice.union(edge[1], edge[2]))
+                unique++;
+            else if (edge[0] == 2 && bob.union(edge[1], edge[2]))
+                unique++;
         }
-        return (dsu_alice.united() && dsu_bob.united()) ? edges.length - edgeAdd : -1;
+
+        return alice.united() && bob.united() ? edges.length - unique : -1;
+
     }
 
     class DSU {
+
         int rank[];
         int parent[];
-        int distinctComponents;
+        int distinctComponent;
 
         DSU(int n) {
             rank = new int[n + 1];
             parent = new int[n + 1];
-            distinctComponents = n;
-            for (int i = 1; i <= n; i++) {
+            distinctComponent = n;
+            for (int i = 1; i <= n; i++)
                 parent[i] = i;
-            }
-        }
-
-        int findParent(int node) {
-            if (parent[node] == node)
-                return node;
-            return parent[node] = findParent(parent[node]);
         }
 
         boolean union(int x, int y) {
-            int px = findParent(x);
-            int py = findParent(y);
+            int px = find(x);
+            int py = find(y);
+
             if (px == py)
                 return false;
-            if (rank[px] < rank[py]) {
+
+            if (rank[px] < rank[py])
                 parent[px] = py;
-            } else if (rank[px] > rank[py]) {
+            else if (rank[px] > rank[py])
                 parent[py] = px;
-            } else {
+            else {
                 parent[px] = py;
                 rank[py]++;
             }
-            distinctComponents--;
+
+            distinctComponent--;
             return true;
         }
 
+        int find(int x) {
+            if (parent[x] == x)
+                return x;
+            return parent[x] = find(parent[x]);
+        }
+
         boolean united() {
-            return distinctComponents == 1;
+            return distinctComponent == 1;
         }
     }
 }
