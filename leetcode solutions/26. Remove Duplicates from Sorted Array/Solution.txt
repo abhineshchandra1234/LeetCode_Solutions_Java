@@ -1,0 +1,29 @@
+// 26. Remove Duplicates from Sorted Array
+
+/*
+Intuition
+we will solve this problem with two pointers
+first pointer will traverse the array
+second ptr will point to the index of next unique element insertion
+we will compare both ptrs nos, if they are not equal insert first ptr no at second ptr index and increase second ptr
+later return second ptr, as it tells count of unique nos
+Approach
+
+Complexity
+Time complexity: O(n)
+Space complexity: O(1)
+*/
+
+class Solution {
+    fun removeDuplicates(nums: IntArray): Int {
+        
+        var i = 1
+        for(j in 1 until nums.size) {
+            if(nums[j]!=nums[i-1]) {
+                nums[i++] = nums[j]
+            }
+        }
+
+        return i
+    }
+}
