@@ -1,0 +1,28 @@
+// 121. Best Time to Buy and Sell Stock
+/*
+Intuition
+we will try to reduce buy price
+so we will compare buy price with curr no, if buy price is more, we will use curr as buy price
+profit we will be calculated for all curr, by taking max of profit and curr - buy price
+Approach
+
+Complexity
+Time complexity: O(n)
+Space complexity: O(1)
+*/
+class Solution {
+    fun maxProfit(prices: IntArray): Int {
+        
+        var buyPrice = prices[0]
+        var profit = 0
+
+        for(i in 1 until prices.size) {
+            if(buyPrice>prices[i]) {
+                buyPrice = prices[i]
+            }
+            profit = maxOf(profit, prices[i]-buyPrice)
+        }
+
+        return profit
+    }
+}
