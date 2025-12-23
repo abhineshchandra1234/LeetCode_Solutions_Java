@@ -1,0 +1,46 @@
+// 55. Jump Game
+
+/*
+Intuition
+we will traverse through the nums array and find max reach at every index
+if index is more than max reach then return false ie we cannot jump till last index using prev jumps
+if max reach is equal to or greater than last index return true.
+if we have traversed all index means we have reached last index, return true.
+max reach = i + nums[i]
+Approach
+
+Complexity
+Time complexity: O(n)
+Space complexity: O(1)
+*/
+
+class Solution {
+    public boolean canJump(int[] nums) {
+
+        int reach = 0, n = nums.length;
+        for (int i = 0; i < n; i++) {
+            if (i > reach)
+                return false;
+            reach = Math.max(reach, i + nums[i]);
+            if (reach >= n - 1)
+                return true;
+        }
+        return true;
+    }
+}
+
+class Solution {
+    fun canJump(nums: IntArray): Boolean {
+        
+        var maxReach = 0
+        
+        for(i in nums.indices) {
+            if(i>maxReach) {
+                return false
+            }
+            maxReach = maxOf(maxReach, i+nums[i])
+        }
+
+        return true
+    }
+}
