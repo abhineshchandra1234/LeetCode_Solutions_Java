@@ -1,0 +1,41 @@
+// 274. H-Index
+
+/*
+Intuition
+we will use a new array and store the frequency of each citations
+then we will traverse the array from back, and add frequency to a var count
+if for particular index, count is greater than equal to index, then return that index
+which means we have got max index papers whose citations is alteast index or more than that
+Approach
+
+Complexity
+Time complexity: O(n)
+Space complexity: O(n)
+*/
+
+class Solution {
+    fun hIndex(citations: IntArray): Int {
+        
+        var n = citations.size
+        var arr = IntArray(n+1)
+
+        for(c in citations) {
+            if(c>n) {
+                arr[n]++
+            }
+            else {
+                arr[c]++
+            }
+        }
+
+        var count = 0
+        for(i in n downTo 0) {
+            count += arr[i]
+            if(count >= i) {
+                return i
+            } 
+        }
+
+        return 0
+    }
+}
