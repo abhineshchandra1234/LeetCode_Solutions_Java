@@ -50,3 +50,33 @@ class Solution {
         return res;
     }
 }
+
+// kotlin
+
+class Solution {
+    fun trap(height: IntArray): Int {
+        
+        var n = height.size
+        var left = 0; var right = n-1
+        var res = 0
+        var maxLeft = 0; var maxRight = 0
+
+        while(left<=right) {
+            if(height[left]<=height[right]) {
+                if(height[left]>maxLeft)
+                    maxLeft = height[left]
+                else
+                    res += maxLeft - height[left]
+                left++
+            } else {
+                if(height[right]>maxRight)
+                    maxRight = height[right]
+                else
+                    res += maxRight - height[right]
+                right--
+            }
+        }
+
+        return res
+    }
+}
