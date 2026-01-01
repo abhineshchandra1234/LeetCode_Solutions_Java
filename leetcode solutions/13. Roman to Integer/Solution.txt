@@ -1,0 +1,35 @@
+// 13. Roman to Integer
+
+/*
+Intuition
+we will traverse roman string, if the curr char is less than the next char reduce res by curr char otherwise increase res by curr char value
+Approach
+
+Complexity
+Time complexity: O(n)
+Space complexity: O(1)
+*/
+class Solution {
+    fun romanToInt(s: String): Int {
+        var res = 0
+
+        var roman = mapOf(
+            'I' to 1,
+            'V' to 5,
+            'X' to 10,
+            'L' to 50,
+            'C' to 100,
+            'D' to 500,
+            'M' to 1000
+        )
+
+        for(i in 0 until s.length - 1) {
+            if(roman.getValue(s[i])<roman.getValue(s[i+1]))
+                res -= roman.getValue(s[i])
+            else
+                res += roman.getValue(s[i])
+        }
+
+        return res + roman.getValue(s[s.length-1])
+    }
+}
