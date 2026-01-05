@@ -1,0 +1,40 @@
+// 151. Reverse Words in a String
+
+/*
+Intuition
+we will first split the words in a list
+then we will just reverse the words in the list using two-pointers
+then we will traverse through the words and add them to stringbuilder or res alongwith spaces
+Approach
+
+Complexity
+Time complexity: O(n)
+Space complexity: O(n)
+*/
+
+class Solution {
+    fun reverseWords(s: String): String {
+        val words = s.split(" ").toMutableList()
+        var left = 0
+        var right = words.size - 1
+
+        while(left<right) {
+            var temp = words[left]
+            words[left] = words[right]
+            words[right] = temp
+            left++
+            right--
+        }
+
+        var res = StringBuilder()
+        for(word in words) {
+            if(word.isNotEmpty()) {
+                if(res.isNotEmpty()) {
+                    res.append(" ")
+                }
+                res.append(word)
+            }
+        }
+        return res.toString()
+    }
+}
