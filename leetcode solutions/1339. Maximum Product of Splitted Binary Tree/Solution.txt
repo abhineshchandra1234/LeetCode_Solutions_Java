@@ -1,0 +1,63 @@
+// 1339. Maximum Product of Splitted Binary Tree
+
+/*
+Intuition
+we will find total sum using dfs
+then we will use bfs and check below condition for each node, as per the requirement
+long curr = (total - node.val) * node.val; res = Math.max(res, curr);
+Finally return the res
+Approach
+
+Complexity
+Time complexity: O(n)
+Space complexity: O(n)
+*/
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+
+    long mod = (long) 1e9 + 7;
+    long res = 0;
+
+    public int maxProduct(TreeNode root) {
+        long total = dfs(root);
+        Queue<TreeNode> q = new LinkedList();
+        q.add(root);
+
+        while (!q.isEmpty()) {
+            TreeNode node = q.poll();
+            if (node == null)
+                continue;
+            long curr = (total - node.val) * node.val;
+            res = Math.max(res, curr);
+
+            if (node.left != null)
+                q.add(node.left);
+            if (node.right != null)
+                q.add(node.right);
+        }
+
+        return (int) (res % mod);
+    }
+
+    private long dfs(TreeNode node) {
+        if (node == null)
+            return 0;
+        node.val += dfs(node.left) + dfs(node.right);
+        return node.val;
+    }
+}
