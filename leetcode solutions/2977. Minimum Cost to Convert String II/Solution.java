@@ -1,7 +1,25 @@
 // 2977. Minimum Cost to Convert String II
 
 /**
- * Solution to be discussed
+ * Intuition
+ * we have first created a graph of original and changed nodes
+ * we have also created a set of different lengths found in original
+ * Then we are solving from 0 index through recursion
+ * In solve method we are checking if particular index is already solved, if it
+ * is return it
+ * Then we are checking chars at curr index are equal, if yes we are calling
+ * solve function on idx+1
+ * Then we are traversing validLengths, In this we are taking source and target
+ * substrings
+ * if the graph doestn contain source substring continue to another
+ * Then we are calculating path cost between source substring and target
+ * substring using dijkstra
+ * we are then updating minCost with pathCost plus recursion on idx+len
+ * Approach
+ * 
+ * Complexity
+ * Time complexity: O(n^2), graph+dijkstra
+ * Space complexity: O(n^2), graph+dijkstra
  */
 
 class Solution {
