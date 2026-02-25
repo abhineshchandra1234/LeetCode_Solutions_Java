@@ -48,3 +48,35 @@ class Solution {
         return res;
     }
 }
+
+class Solution {
+    public int[] sortByBits(int[] arr) {
+        int n = arr.length;
+        Integer[] sorted = new Integer[n];
+        for (int i = 0; i < n; i++)
+            sorted[i] = arr[i];
+
+        Arrays.sort(sorted, (a, b) -> {
+            int cA = countBits(a);
+            int cB = countBits(b);
+
+            if (cA == cB)
+                return a - b;
+            return cA - cB;
+        });
+
+        for (int i = 0; i < n; i++)
+            arr[i] = sorted[i];
+
+        return arr;
+    }
+
+    private int countBits(int num) {
+        int count = 0;
+        while (num != 0) {
+            count += num & 1;
+            num >>= 1;
+        }
+        return count;
+    }
+}
