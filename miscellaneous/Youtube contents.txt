@@ -1,0 +1,7 @@
+Title 
+Leetcode 27. Remove Element
+
+
+Description
+Github - https://github.com/abhineshchandra1234/LeetCode_Solutions_Java/blob/master/leetcode%20solutions/27.%20Remove%20Element/Solution.java
+#dsa #java #coding #programming #python #javascript #education #code #automobile #engineering #sql
