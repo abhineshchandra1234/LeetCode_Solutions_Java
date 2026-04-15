@@ -5,7 +5,7 @@ Intuition
 we will solve this problem with two pointers
 first pointer will traverse the array
 second ptr will point to the index of next unique element insertion
-we will compare both ptrs nos, if they are not equal insert first ptr no at second ptr index and increase second ptr
+we will compare curr and prev no, if they are not equal insert first ptr no at second ptr index and increase second ptr
 later return second ptr, as it tells count of unique nos
 Approach
 
