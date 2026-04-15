@@ -1,5 +1,5 @@
 Title 
-Leetcode 27. Remove Element
+Leetcode 26. Remove Duplicates from Sorted Array
 
 
 Description
