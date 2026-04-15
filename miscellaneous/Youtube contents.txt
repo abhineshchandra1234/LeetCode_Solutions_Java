@@ -3,5 +3,5 @@ Leetcode 26. Remove Duplicates from Sorted Array
 
 
 Description
-Github - https://github.com/abhineshchandra1234/LeetCode_Solutions_Java/blob/master/leetcode%20solutions/27.%20Remove%20Element/Solution.java
+Github - https://github.com/abhineshchandra1234/LeetCode_Solutions_Java/blob/master/leetcode%20solutions/26.%20Remove%20Duplicates%20from%20Sorted%20Array/Solution.txt
 #dsa #java #coding #programming #python #javascript #education #code #automobile #engineering #sql
