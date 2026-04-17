@@ -75,3 +75,50 @@ class RandomizedSet {
  * boolean param_2 = obj.remove(val);
  * int param_3 = obj.getRandom();
  */
+
+// kotlin
+class RandomizedSet()
+{
+
+    private val list = ArrayList<Int>()
+    private val map = HashMap<Int,Int>()
+
+    fun search(`val`: Int): Boolean {
+        return map.containsKey(`val`)
+    }
+
+    fun insert(`val`: Int): Boolean {
+        if(search(`val`)) {
+            return false
+        }
+        list.add(`val`)
+        map[`val`] = list.size - 1
+        return true
+    }
+
+    fun remove(`val`: Int): Boolean {
+        val index = map[`val`] ?: return false
+
+        val lastEle = list.last()
+        list[index] = lastEle
+        map[lastEle] = index
+
+        list.removeAt(list.size-1)
+        map.remove(`val`)
+
+        return true
+    }
+
+    fun getRandom(): Int {
+        return list[Random.nextInt(list.size)]
+    }
+
+}
+
+/**
+ * Your RandomizedSet object will be instantiated and called as such:
+ * var obj = RandomizedSet()
+ * var param_1 = obj.insert(`val`)
+ * var param_2 = obj.remove(`val`)
+ * var param_3 = obj.getRandom()
+ */

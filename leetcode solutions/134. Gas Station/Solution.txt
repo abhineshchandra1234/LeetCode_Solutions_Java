@@ -1,0 +1,36 @@
+// 134. Gas Station
+
+/*
+Intuition
+we need gas sum greater or equal to cost sum to complete a loop
+we will check total at each indices, if it is less than 0, means we do not have enough gas to travel to next station
+we will reset total, and move to next index
+later we will return this index as answer
+Approach
+
+Complexity
+Time complexity: O(n)
+Space complexity: O(1)
+*/
+
+class Solution {
+    fun canCompleteCircuit(gas: IntArray, cost: IntArray): Int {
+        
+        if(gas.sum()<cost.sum())
+            return -1
+
+        var total = 0
+        var res = 0
+
+        for(i in gas.indices) {
+            total += gas[i] - cost[i]
+
+            if(total<0) {
+                total = 0
+                res = i+1
+            }
+        }
+
+        return res
+    }
+}

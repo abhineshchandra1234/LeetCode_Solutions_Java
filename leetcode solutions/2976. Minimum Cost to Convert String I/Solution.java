@@ -1,98 +1,82 @@
 /**
  * 2976. Minimum Cost to Convert String I
  * 
+ * 
  * Intuition
- * we are given two strings source and target of length n
- * we are also given char arrays original and changed and integer array cost
- * cost[i] represents cost of changing char original[i] to changed[i]
- * we start from string source and pick a char x and change it to y at a cost of
- * z, such that original[j] = x, changed[j] = y and cost[j] = z
- * we need to return the min cost to convert source to target string, if it is
- * not possible return -1
- * we can have indices i,j such that original[j]==original[i] and
- * changed[j]==changed[i]
- * 
- * 
+ * we can solve this problem through Floyd Warshall
+ * there would be a matrix containing shortest path for each node to each node,
+ * and we can access it in O(1) time
+ * we can also solve this problem through Dijkstra
+ * In Dijkstra there is shortest path from source to all nodes
+ * we just need to construct matrix as in Floyd Warshall and we are done
  * Approach
- * we can consider each char as a node and have a directed edges between them
- * with a cost
- * the problem then becomes finding min cost path from each char in source to
- * corresponding char in target
- * we will apply dijkstra algorithm for all 26 chars to find shortest path to
- * each of the 26 chars
- * 
  * 
  * Complexity
- * Time complexity: O(m+n)
- * there are 26 vertices and m edges so time is O(m*log26), which is O(m)
- * we are traversing source string to calculate total cost, which is O(n)
- * Space complexity: O(m), store conversions in graph
+ * Time complexity: O(n*(V+E)logV)
+ * Space complexity: O(V+E)
  */
 
-class Solution {
+public class Solution {
+    static class Pair {
+        int key;
+        char value;
 
-    public long minimumCost(String source, String target, char[] original, char[] changed, int[] cost) {
-
-        Map<Integer, List<int[]>> graph = new HashMap();
-
-        for (int i = 0; i < original.length; i++) {
-            graph.computeIfAbsent((original[i] - 'a'), k -> new ArrayList()).add(
-                    new int[] { changed[i] - 'a', cost[i] });
+        public Pair(int key, char value) {
+            this.key = key;
+            this.value = value;
         }
-
-        // calculate all chars conversions, as we have some intermediate conversions too
-        long[][] minConversionCosts = new long[26][26];
-        for (int i = 0; i < 26; i++) {
-            minConversionCosts[i] = dijkstra(i, graph);
-        }
-
-        long totalCost = 0;
-        for (int i = 0; i < source.length(); i++) {
-            if (source.charAt(i) != target.charAt(i)) {
-                long charConversionCost = minConversionCosts[source.charAt(i) - 'a'][target.charAt(i) - 'a'];
-                if (charConversionCost == -1)
-                    return -1;
-                totalCost += charConversionCost;
-            }
-        }
-        return totalCost;
     }
 
-    private long[] dijkstra(int startChar, Map<Integer, List<int[]>> graph) {
-
-        PriorityQueue<Pair<Long, Integer>> pq = new PriorityQueue<>(
-                (a, b) -> {
-                    return Long.compare(a.getKey(), b.getKey());
-                });
-
-        pq.add(new Pair<>(0L, startChar));
-        long[] minCosts = new long[26];
-        Arrays.fill(minCosts, -1L);
+    void dijkstra(Map<Character, ArrayList<Pair>> adj, char source, int[][] distances) {
+        PriorityQueue<Pair> pq = new PriorityQueue<>((a, b) -> a.key - b.key);
+        pq.add(new Pair(0, source));
 
         while (!pq.isEmpty()) {
-            Pair<Long, Integer> currPair = pq.poll();
-            long currentCost = currPair.getKey();
-            int currentChar = currPair.getValue();
+            Pair current = pq.poll();
+            int d = current.key;
+            char node = current.value;
 
-            if (minCosts[currentChar] != -1L &&
-                    minCosts[currentChar] < currentCost)
-                continue;
+            for (Pair child : adj.getOrDefault(node, new ArrayList<>())) {
+                char adjNode = child.value;
+                int distance = child.key;
 
-            if (!graph.containsKey(currentChar))
-                continue;
-            for (int[] conversion : graph.get(currentChar)) {
-                int targetChar = conversion[0];
-                long conversionCost = conversion[1];
-                long newTotalCost = currentCost + conversionCost;
-
-                if (minCosts[targetChar] == -1L || newTotalCost < minCosts[targetChar]) {
-
-                    minCosts[targetChar] = newTotalCost;
-                    pq.add(new Pair<>(newTotalCost, targetChar));
+                if (distances[source - 'a'][adjNode - 'a'] > distance + d) {
+                    distances[source - 'a'][adjNode - 'a'] = distance + d;
+                    pq.add(new Pair(distance + d, adjNode));
                 }
             }
         }
+    }
 
-        return minCosts;
+    long minimumCost(String source, String target, char[] original, char[] changed, int[] cost) {
+        Map<Character, ArrayList<Pair>> adj = new HashMap<>();
+
+        for (int i = 0; i < original.length; i++) {
+            adj.computeIfAbsent(original[i], k -> new ArrayList<>()).add(new Pair(cost[i], changed[i]));
+        }
+
+        int[][] distances = new int[26][26];
+        for (int i = 0; i < 26; i++) {
+            Arrays.fill(distances[i], Integer.MAX_VALUE);
+        }
+
+        // Populate distances using Dijkstra's
+        for (char it : original) {
+            dijkstra(adj, it, distances);
+        }
+
+        long ans = 0;
+        for (int i = 0; i < source.length(); i++) {
+            if (source.charAt(i) == target.charAt(i))
+                continue;
+
+            if (distances[source.charAt(i) - 'a'][target.charAt(i) - 'a'] == Integer.MAX_VALUE)
+                return -1;
+
+            else
+                ans += distances[source.charAt(i) - 'a'][target.charAt(i) - 'a'];
+        }
+
+        return ans;
     }
 }

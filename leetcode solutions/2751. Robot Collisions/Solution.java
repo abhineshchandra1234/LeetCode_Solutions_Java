@@ -35,6 +35,14 @@ Complexity
     Space complexity: O(n), using stack to simulate collision
 
 */
+
+// kotlin
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Stack;
+
 class Solution {
 
     fun survivedRobotsHealths(
@@ -74,5 +82,53 @@ class Solution {
         }
 
         return res
+    }
+}
+
+    // java
+
+class Solution {
+    public List<Integer> survivedRobotsHealths(int[] positions, int[] healths, String directions) {
+        int n = positions.length;
+        Integer[] indices = new Integer[n];
+
+        for (int i = 0; i < n; i++) {
+            indices[i] = i;
+        }
+
+        Stack<Integer> s = new Stack();
+
+        Arrays.sort(indices, (a, b) -> Integer.compare(positions[a], positions[b]));
+
+        List<Integer> res = new ArrayList();
+
+        for (int currIdx : indices) {
+            if (directions.charAt(currIdx) == 'R')
+                s.push(currIdx);
+            else {
+                while (!s.isEmpty() && healths[currIdx] > 0) {
+                    int topIdx = s.pop();
+
+                    if (healths[topIdx] > healths[currIdx]) {
+                        healths[topIdx] -= 1;
+                        healths[currIdx] = 0;
+                        s.push(topIdx);
+                    } else if (healths[topIdx] < healths[currIdx]) {
+                        healths[currIdx] -= 1;
+                        healths[topIdx] = 0;
+                    } else {
+                        healths[currIdx] = 0;
+                        healths[topIdx] = 0;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (healths[i] > 0)
+                res.add(healths[i]);
+        }
+
+        return res;
     }
 }

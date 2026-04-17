@@ -38,3 +38,22 @@ class Solution {
         return d;
     }
 }
+
+class Solution {
+    public int minimumDeletions(String s) {
+
+        int n = s.length();
+        int count = 0;
+        Stack<Character> st = new Stack();
+
+        for (char c : s.toCharArray()) {
+            if (!st.isEmpty() && c == 'a' && st.peek() == 'b') {
+                st.pop();
+                count++;
+            } else
+                st.push(c);
+        }
+
+        return count;
+    }
+}

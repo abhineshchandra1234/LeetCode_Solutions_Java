@@ -45,20 +45,24 @@ class Solution {
     }
 }
 
+// kotlin
 class Solution {
-    public int majorityElement(int[] nums) {
-        HashMap<Integer, Integer> map = new HashMap();
-        int res = 0;
-        int majority = 0;
+    fun majorityElement(nums: IntArray): Int {
+        
+        var hash = HashMap<Int,Int>()
+        var res = 0
+        var majority = 0
 
-        for (int n : nums) {
-            map.put(n, map.getOrDefault(n, 0) + 1);
-            if (map.get(n) > majority) {
-                res = n;
-                majority = map.get(n);
+        for(n in nums) {
+            var count = (hash[n]?:0) + 1
+            hash[n] = count
+
+            if(count>majority) {
+                res = n
+                majority = count
             }
         }
 
-        return res;
+        return res 
     }
 }

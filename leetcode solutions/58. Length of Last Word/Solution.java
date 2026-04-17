@@ -37,3 +37,22 @@ class Solution {
         return len;
     }
 }
+
+// kotlin
+class Solution {
+    fun lengthOfLastWord(s: String): Int {
+        
+        var len = 0
+        var tail = s.length - 1
+
+        while(tail>=0 && s[tail]==' ')
+            tail--
+        
+        while(tail>=0 && s[tail]!=' ') {
+            len++
+            tail--
+        }
+
+        return len
+    }
+}
