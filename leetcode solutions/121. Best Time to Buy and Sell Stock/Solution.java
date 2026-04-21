@@ -10,6 +10,8 @@ Complexity
 Time complexity: O(n)
 Space complexity: O(1)
 */
+
+//kotlin
 class Solution {
     fun maxProfit(prices: IntArray): Int {
         
@@ -24,5 +26,21 @@ class Solution {
         }
 
         return profit
+    }
+}
+
+    // java
+class Solution {
+    public int maxProfit(int[] prices) {
+        int buy = prices[0];
+        int res = 0;
+
+        for (int i = 1; i < prices.length; i++) {
+            if (buy > prices[i])
+                buy = prices[i];
+            res = Math.max(res, prices[i] - buy);
+        }
+
+        return res;
     }
 }
