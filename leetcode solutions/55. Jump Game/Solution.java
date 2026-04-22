@@ -14,6 +14,7 @@ Time complexity: O(n)
 Space complexity: O(1)
 */
 
+//Java
 class Solution {
     public boolean canJump(int[] nums) {
 
@@ -29,6 +30,7 @@ class Solution {
     }
 }
 
+// kotlin
 class Solution {
     fun canJump(nums: IntArray): Boolean {
         
