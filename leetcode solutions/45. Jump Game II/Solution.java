@@ -12,6 +12,7 @@ Time complexity: O(n)
 Space complexity: O(1)
 */
 
+// kotlin
 class Solution {
     fun jump(nums: IntArray): Int {
         
@@ -34,5 +35,28 @@ class Solution {
             }
         }
         return jumps
+    }
+}
+
+    // java
+class Solution {
+    public int jump(int[] nums) {
+        int jump = 0, prevMr = 0, mr = 0, n = nums.length;
+
+        for (int i = 0; i < n - 1; i++) {
+            mr = Math.max(mr, i + nums[i]);
+
+            if (mr >= n - 1) {
+                jump++;
+                break;
+            }
+
+            if (i == prevMr) {
+                jump++;
+                prevMr = mr;
+            }
+        }
+
+        return jump;
     }
 }
