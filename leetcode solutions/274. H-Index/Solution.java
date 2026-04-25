@@ -13,6 +13,7 @@ Time complexity: O(n)
 Space complexity: O(n)
 */
 
+//kotlin
 class Solution {
     fun hIndex(citations: IntArray): Int {
         
@@ -37,5 +38,29 @@ class Solution {
         }
 
         return 0
+    }
+}
+
+    // Java
+class Solution {
+    public int hIndex(int[] citations) {
+        int n = citations.length;
+        int[] res = new int[n + 1];
+
+        for (int citation : citations) {
+            if (citation > n)
+                res[n]++;
+            else
+                res[citation]++;
+        }
+
+        int count = 0;
+        for (int i = n; i >= 0; i--) {
+            count += res[i];
+            if (count >= i)
+                return i;
+        }
+
+        return 0;
     }
 }
