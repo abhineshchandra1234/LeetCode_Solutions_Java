@@ -25,46 +25,52 @@
  * RandomizedSet
  * 
  */
-class RandomizedSet {
 
-    private ArrayList<Integer> list;
-    private Map<Integer, Integer> map;
+// Java
+class RandomizedSet {
+    private List<Integer> a;
+    private Map<Integer, Integer> aIdx;
 
     public RandomizedSet() {
-        list = new ArrayList();
-        map = new HashMap();
+        this.a = new ArrayList();
+        this.aIdx = new HashMap();
     }
 
     public boolean insert(int val) {
-        if (map.containsKey(val))
+        if (aIdx.containsKey(val))
             return false;
 
-        list.add(val);
-        map.put(val, list.size() - 1);
+        aIdx.put(val, a.size());
+        a.add(val);
         return true;
     }
 
     public boolean remove(int val) {
-        if (!map.containsKey(val))
+        if (!aIdx.containsKey(val))
             return false;
 
-        // fetch index
-        int index = map.get(val);
-        // swap with last element
-        list.set(index, list.get(list.size() - 1));
-        // update new element in map
-        map.put(list.get(index), index);
-        // remove duplicate last element
-        list.remove(list.size() - 1);
-        // remove the val
-        map.remove(val);
+        // fetch index of curr no
+        int idx = aIdx.get(val);
+
+        // swap of last and curr, delete curr
+        // map operation
+        // assign curr idx to last no
+        // remove val
+        aIdx.put(a.get(a.size() - 1), idx);
+        aIdx.remove(val);
+
+        // list operation
+        // assign last no to curr index
+        // remove last no
+        a.set(idx, a.get(a.size() - 1));
+        a.remove(a.size() - 1);
 
         return true;
     }
 
     public int getRandom() {
-        Random rand = new Random();
-        return list.get(rand.nextInt(list.size()));
+        int idx = (int) (Math.random() * a.size());
+        return a.get(idx);
     }
 }
 
