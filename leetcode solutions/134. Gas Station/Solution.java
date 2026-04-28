@@ -13,6 +13,7 @@ Time complexity: O(n)
 Space complexity: O(1)
 */
 
+//kotlin
 class Solution {
     fun canCompleteCircuit(gas: IntArray, cost: IntArray): Int {
         
@@ -32,5 +33,34 @@ class Solution {
         }
 
         return res
+    }
+}
+
+    // Java
+
+class Solution {
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int n = gas.length;
+        int totalG = 0, totalC = 0;
+        for (int i = 0; i < n; i++) {
+            totalG += gas[i];
+            totalC += cost[i];
+        }
+
+        if (totalG < totalC)
+            return -1;
+
+        int currG = 0;
+        int start = 0;
+
+        for (int i = 0; i < n; i++) {
+            currG += gas[i] - cost[i];
+            if (currG < 0) {
+                currG = 0;
+                start = i + 1;
+            }
+        }
+
+        return start;
     }
 }
