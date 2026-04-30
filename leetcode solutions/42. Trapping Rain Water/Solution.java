@@ -23,31 +23,33 @@
  * Space complexity: O(1)
  * 
  */
+
+// Java
 class Solution {
     public int trap(int[] height) {
+        int n = height.length;
+        int tWater = 0;
 
-        int left = 0, right = height.length - 1;
-        int res = 0;
-        int maxLeft = 0, maxRight = 0;
+        int lMax = 0;
+        int rMax = 0;
 
-        while (left <= right) {
+        int start = 0;
+        int end = n - 1;
 
-            if (height[left] <= height[right]) {
-                if (height[left] > maxLeft)
-                    maxLeft = height[left];
-                else
-                    res += maxLeft - height[left];
-                left++;
+        while (start < end) {
+            lMax = Math.max(lMax, height[start]);
+            rMax = Math.max(rMax, height[end]);
+
+            if (lMax < rMax) {
+                tWater += lMax - height[start];
+                start++;
             } else {
-                if (height[right] > maxRight)
-                    maxRight = height[right];
-                else
-                    res += maxRight - height[right];
-                right--;
+                tWater += rMax - height[end];
+                end--;
             }
         }
 
-        return res;
+        return tWater;
     }
 }
 
