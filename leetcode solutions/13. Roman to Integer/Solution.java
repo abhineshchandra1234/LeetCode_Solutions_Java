@@ -9,6 +9,8 @@ Complexity
 Time complexity: O(n)
 Space complexity: O(1)
 */
+
+//Kotlin
 class Solution {
     fun romanToInt(s: String): Int {
         var res = 0
@@ -31,5 +33,31 @@ class Solution {
         }
 
         return res + roman.getValue(s[s.length-1])
+    }
+}
+
+    // Java
+class Solution {
+    public int romanToInt(String s) {
+        int res = 0, n = s.length();
+        Map<Character, Integer> m = new HashMap();
+        m.put('I', 1);
+        m.put('V', 5);
+        m.put('X', 10);
+        m.put('L', 50);
+        m.put('C', 100);
+        m.put('D', 500);
+        m.put('M', 1000);
+
+        for (int i = 0; i < n - 1; i++) {
+            int curr = m.get(s.charAt(i));
+            int next = m.get(s.charAt(i + 1));
+            if (curr < next)
+                res -= curr;
+            else
+                res += curr;
+        }
+
+        return res + m.get(s.charAt(n - 1));
     }
 }
