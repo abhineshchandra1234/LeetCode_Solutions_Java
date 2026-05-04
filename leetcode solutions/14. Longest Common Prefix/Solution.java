@@ -33,9 +33,7 @@ class Solution {
     }
 }
 
-
-
-//kotlin
+// kotlin
 class Solution {
     fun longestCommonPrefix(strs: Array<String>): String {
         
@@ -46,7 +44,9 @@ class Solution {
         var first = strs[0]
         var last = strs[strs.size-1]
 
-        for(i in 0 until minOf(first.length, last.length)) {
+        for(i in 0
+
+    until minOf(first.length, last.length)) {
             if(first[i]!=last[i])
                 return ans.toString()
             ans.append(first[i])
