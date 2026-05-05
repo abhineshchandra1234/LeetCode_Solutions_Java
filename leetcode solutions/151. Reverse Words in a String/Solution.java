@@ -40,32 +40,87 @@ class Solution {
     }
 }
 
-//java
+    // java
+    // back to front
+    class Solution {
+        public String reverseWords(String s) {
+            StringBuilder result = new StringBuilder();
+            int i = s.length() - 1;
+
+            while (i >= 0) {
+                while (i >= 0 && s.charAt(i) == ' ')
+                    i--;
+
+                if (i < 0)
+                    break;
+
+                int j = i;
+
+                while (j >= 0 && s.charAt(j) != ' ')
+                    j--;
+
+                if (result.length() > 0)
+                    result.append(" ");
+
+                result.append(s.substring(j + 1, i + 1));
+
+                i = j;
+            }
+
+            return result.toString();
+        }
+    }
+
+    // java
+    // front to back
 class Solution {
     public String reverseWords(String s) {
-        StringBuilder result = new StringBuilder();
-        int i = s.length() - 1;
+        // Convert string to char array for in-place operations
+        char[] arr = s.toCharArray();
 
-        while (i >= 0) {
-            while (i >= 0 && s.charAt(i) == ' ')
-                i--;
+        // Step 1: reverse whole string
+        reverse(arr, 0, arr.length - 1);
 
-            if (i < 0)
+        int n = arr.length;
+        int left = 0, right = 0, i = 0;
+
+        while (i < n) {
+            // skip spaces
+            while (i < n && arr[i] == ' ')
+                i++;
+            if (i == n)
                 break;
 
-            int j = i;
+            // copy word
+            while (i < n && arr[i] != ' ') {
+                arr[right++] = arr[i++];
+            }
 
-            while (j >= 0 && s.charAt(j) != ' ')
-                j--;
+            // reverse the copied word
+            reverse(arr, left, right - 1);
 
-            if (result.length() > 0)
-                result.append(" ");
+            // add space
+            if (i < n) {
+                arr[right++] = ' ';
+            }
 
-            result.append(s.substring(j + 1, i + 1));
+            left = right;
 
-            i = j;
+            i++;
         }
 
-        return result.toString();
+        // Final trim: if we added a trailing space, remove it
+        return new String(arr, 0, (right > 0 && arr[right - 1] == ' ') ? right - 1 : right);
+    }
+
+    // helper function to reverse char array
+    private void reverse(char[] arr, int l, int r) {
+        while (l < r) {
+            char temp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = temp;
+            l++;
+            r--;
+        }
     }
 }
