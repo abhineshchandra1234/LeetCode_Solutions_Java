@@ -12,6 +12,7 @@ Time complexity: O(n)
 Space complexity: O(n)
 */
 
+// kotlin
 class Solution {
     fun convert(s: String, numRows: Int): String {
         if(numRows==1)
@@ -41,5 +42,28 @@ class Solution {
         }
 
         return res.toString()
+    }
+}
+
+    // java
+class Solution {
+    public String convert(String s, int numRows) {
+        if (numRows == 1)
+            return s;
+        StringBuilder res = new StringBuilder();
+        int inc = 2 * (numRows - 1);
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = i; j < s.length(); j += inc) {
+                res.append(s.charAt(j));
+                int dia = inc - (2 * i);
+                if (i > 0 && i < numRows - 1
+                        && j + dia < s.length()) {
+                    res.append(s.charAt(j + dia));
+                }
+            }
+        }
+
+        return res.toString();
     }
 }
