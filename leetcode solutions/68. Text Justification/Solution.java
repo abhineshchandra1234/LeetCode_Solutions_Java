@@ -102,3 +102,61 @@ class Solution {
         return new String(new char[length]).replace('\0', ' ');
     }
 }
+
+// Second Code
+class Solution {
+    int MAX_WIDTH;
+
+    public List<String> fullJustify(String[] words, int maxWidth) {
+        List<String> res = new ArrayList();
+        int n = words.length;
+        MAX_WIDTH = maxWidth;
+        int i = 0;
+
+        while (i < n) {
+            int letters = words[i].length();
+            int j = i + 1;
+            int slots = 0;
+
+            while (j < n && slots + letters + words[j].length() + 1 <= MAX_WIDTH) {
+                letters += words[j].length();
+                slots += 1;
+                j++;
+            }
+
+            int spaces = MAX_WIDTH - letters;
+            int wordSpace = slots == 0 ? 0 : spaces / slots;
+            int extraSpace = slots == 0 ? 0 : spaces % slots;
+            // last line
+            if (j == n) {
+                wordSpace = 1;
+                extraSpace = 0;
+            }
+            res.add(getLine(i, j, wordSpace, extraSpace, words));
+            i = j;
+        }
+        return res;
+    }
+
+    private String getLine(int i, int j, int wordSpace, int extraSpace, String[] words) {
+        StringBuilder s = new StringBuilder();
+        for (int k = i; k < j; k++) {
+            s.append(words[k]);
+            // last word of line will have no space after
+            if (k == j - 1)
+                continue;
+            for (int l = 0; l < wordSpace; l++)
+                s.append(" ");
+
+            if (extraSpace > 0) {
+                s.append(" ");
+                extraSpace--;
+            }
+        }
+        // last line extra space
+        while (s.length() < MAX_WIDTH)
+            s.append(" ");
+
+        return s.toString();
+    }
+}
