@@ -17,6 +17,8 @@
  * Space complexity: O(1)
  * 
  */
+
+// First Approach
 class Solution {
     public boolean isSubsequence(String s, String t) {
 
@@ -32,5 +34,48 @@ class Solution {
                 subsequence++;
         }
         return subsequence == s.length();
+    }
+}
+
+// Second Approach
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int i = 0;
+        int j = 0;
+
+        while (i < s.length() && j < t.length()) {
+            if (s.charAt(i) == t.charAt(j))
+                i++;
+            j++;
+        }
+
+        return i == s.length();
+    }
+}
+
+// Third Approach
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        Map<Character, List<Integer>> m = new HashMap();
+
+        for (int i = 0; i < t.length(); i++) {
+            char c = t.charAt(i);
+            m.computeIfAbsent(c, k -> new ArrayList()).add(i);
+        }
+
+        int prev = -1;
+        for (char c : s.toCharArray()) {
+            if (!m.containsKey(c))
+                return false;
+
+            List<Integer> indices = m.get(c);
+            int index = Collections.binarySearch(indices, prev + 1);
+            if (index < 0)
+                index = -index - 1;
+            if (index == indices.size())
+                return false;
+            prev = indices.get(index);
+        }
+        return true;
     }
 }
