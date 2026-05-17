@@ -17,6 +17,7 @@
  * Space complexity: O(n), dfs stack
  */
 
+// Approach - 1 DFS
 class Solution {
     int n;
 
@@ -35,5 +36,30 @@ class Solution {
         boolean left = dfs(arr, i - arr[i]);
         boolean right = dfs(arr, i + arr[i]);
         return left || right;
+    }
+}
+
+// Approach - 2 BFS
+
+class Solution {
+    public boolean canReach(int[] arr, int start) {
+        int n = arr.length;
+
+        boolean[] visited = new boolean[n];
+        Queue<Integer> q = new LinkedList();
+
+        q.add(start);
+
+        while (!q.isEmpty()) {
+            int i = q.poll();
+            if (i < 0 || i >= n || visited[i])
+                continue;
+            if (arr[i] == 0)
+                return true;
+            visited[i] = true;
+            q.add(i + arr[i]);
+            q.add(i - arr[i]);
+        }
+        return false;
     }
 }
