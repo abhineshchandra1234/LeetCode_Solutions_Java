@@ -1,5 +1,6 @@
 /**
  * 3016. Minimum Number of Pushes to Type Word II
+ * This problem is similar to "3014. Minimum Number of Pushes to Type Word I"
  * 
  * Intuition
  * we are given a string word containing lowercase english letters
@@ -45,5 +46,28 @@ class Solution {
         }
 
         return res;
+    }
+}
+
+// Same approach
+class Solution {
+    public int minimumPushes(String word) {
+        int[] freq = new int[26];
+
+        for (char c : word.toCharArray()) {
+            freq[c - 'a']++;
+        }
+
+        Arrays.sort(freq);
+
+        int ans = 0;
+        int index = 0;
+
+        for (int i = 25; i >= 0; i--) {
+            ans += freq[i] * ((index / 8) + 1);
+            index++;
+        }
+
+        return ans;
     }
 }
