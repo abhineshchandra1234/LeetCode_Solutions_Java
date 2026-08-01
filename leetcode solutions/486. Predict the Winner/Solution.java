@@ -45,3 +45,33 @@ class Solution {
         return memo[left][right];
     }
 }
+
+// same approach slight different code
+class Solution {
+    int n;
+    int[][] dp;
+
+    public boolean predictTheWinner(int[] nums) {
+        n = nums.length;
+        dp = new int[n][n];
+
+        for (int[] row : dp) {
+            Arrays.fill(row, Integer.MIN_VALUE);
+        }
+
+        return maxDiff(nums, 0, n - 1) >= 0;
+    }
+
+    private int maxDiff(int[] nums, int left, int right) {
+        if (left == right)
+            return nums[left];
+
+        if (dp[left][right] != Integer.MIN_VALUE)
+            return dp[left][right];
+
+        int takeL = nums[left] - maxDiff(nums, left + 1, right);
+        int takeR = nums[right] - maxDiff(nums, left, right - 1);
+
+        return dp[left][right] = Math.max(takeL, takeR);
+    }
+}
