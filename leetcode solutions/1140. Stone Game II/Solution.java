@@ -61,3 +61,45 @@ class Solution {
         return res;
     }
 }
+
+// same approach
+
+class Solution {
+
+    private int n;
+    private int[][][] t = new int[2][101][101];
+
+    public int stoneGameII(int[] piles) {
+        n = piles.length;
+
+        for (int[][] arr2d : t) {
+            for (int[] arr1d : arr2d) {
+                Arrays.fill(arr1d, -1);
+            }
+        }
+
+        return solveAlice(piles, 1, 0, 1);
+    }
+
+    private int solveAlice(int[] piles, int person, int i, int M) {
+        if (i >= n)
+            return 0;
+
+        if (t[person][i][M] != -1)
+            return t[person][i][M];
+
+        int res = (person == 1) ? -1 : Integer.MAX_VALUE;
+        int stones = 0;
+
+        for (int x = 1; x <= Math.min(2 * M, n - i); x++) {
+            stones += piles[i + x - 1];
+
+            if (person == 1)
+                res = Math.max(res, stones + solveAlice(piles, 0, i + x, Math.max(M, x)));
+            else
+                res = Math.min(res, solveAlice(piles, 1, i + x, Math.max(M, x)));
+        }
+
+        return t[person][i][M] = res;
+    }
+}
